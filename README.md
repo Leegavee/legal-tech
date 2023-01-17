@@ -3,6 +3,9 @@ Legavee legal-tech. Applications, services, packages.
 
 This monorepo contains a collection of legal tech applications, tools, services and resources.
 
+## What we are building
+- [What we are building](https://github.com/Leegavee/legal-tech/blob/main/docs/what-we-are-building/index.md) : A brief explanation of what we are building, for our first product.
+
 ## Getting Started
 
 To get started with the repo, clone it to your local machine and install any necessary dependencies.
