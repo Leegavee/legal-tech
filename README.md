@@ -85,11 +85,11 @@ TypeScript also includes features such as classes, interfaces, and decorators, w
 
 ## Additional Resources
 
-- [Coding Standards](https://github.com/Leegavee/legal-tech/main/blob/docs/coding-standards.md) : Detailed information on the coding standards and conventions used in this repo.
-- [Architecture](https://github.com/Leegavee/legal-tech/main/blob/docs/architecture/dayone-architecture.md) : Explanation of the overall architecture of the repo, including the structure of the packages, services, and applications.
-- [Contribution Guidelines](https://github.com/Leegavee/legal-tech/main/blob/docs/contribution-guidelines.md): Guidelines for contributing to the repo, including information on how to submit pull requests and code review process.
-- [Testing](https://github.com/Leegavee/legal-tech/main/blob/docs/testing.md) : Information on how to run tests for the packages, services, and applications in this repo.
-- [Deployment](https://github.com/Leegavee/legal-tech/main/blob/docs/deployment.md) : Tips and guidelines for debugging code in this repo.
-- [Project management](https://github.com/Leegavee/legal-tech/main/blob/docs/project-management.md) : Information on how to manage the project using GitHub issues and pull requests.
+- [Coding Standards](https://github.com/Leegavee/legal-tech/blob/main/docs/coding-standards.md) : Detailed information on the coding standards and conventions used in this repo.
+- [Architecture](https://github.com/Leegavee/legal-tech/blob/main/docs/architecture/dayone-architecture.md) : Explanation of the overall architecture of the repo, including the structure of the packages, services, and applications.
+- [Contribution Guidelines](https://github.com/Leegavee/legal-tech/blob/main/docs/contribution-guidelines.md): Guidelines for contributing to the repo, including information on how to submit pull requests and code review process.
+- [Testing](https://github.com/Leegavee/legal-tech/blob/main/docs/testing.md) : Information on how to run tests for the packages, services, and applications in this repo.
+- [Deployment](https://github.com/Leegavee/legal-tech/blob/main/docs/deployment.md) : Tips and guidelines for debugging code in this repo.
+- [Project management](https://github.com/Leegavee/legal-tech/blob/main/docs/project-management.md) : Information on how to manage the project using GitHub issues and pull requests.
 
 
