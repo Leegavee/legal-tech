@@ -6,15 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Leegavee/legal-tech.git"
-  },
+  "repository": "git+https://github.com/Leegavee/legal-tech.git",
   "keywords": [],
-  "author": "Lewis Barclay",
+  "author": "Legavee",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Leegavee/legal-tech/issues"
   },
-  "homepage": "https://github.com/Leegavee/legal-tech#readme"
+  "homepage": "https://github.com/Leegavee/legal-tech#readme",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "applications/*"
+  ]
 }
