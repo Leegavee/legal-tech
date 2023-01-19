@@ -21,3 +21,30 @@ We will deliver the service via **a SaaS model that law firms charge for.** The 
 The goal is to make legal representation and case management more equitable and accessible by enabling law firms to provide service at scale at reduced cost.
 
 By implementing AI assistive software, law firms can **streamline their workflow**, **reduce expenses**, and **improve overall efficiency** of their practice as well as **reducing mundane tasks** that need to be undertaken by staff. Additionally, the software will help them to manage client relationships, **reducing the risk of poor reputation** and helping to **provide a better customer service**.
+
+## High level flow, example
+
+```mermaid
+sequenceDiagram
+    participant LawFirm as Law Firm
+    participant Egal as Egal (SaaS service)
+    participant Client as Client
+
+    LawFirm ->> Egal: Register
+    Egal ->> LawFirm: Onboard
+    Egal ->> LawFirm: Validate
+    Client ->> LawFirm: Register (via Egal)
+    LawFirm ->> Egal: Onboard client
+    LawFirm ->> Client: Respond
+    Client ->> LawFirm: Respond
+    Egal ->> LawFirm: Suggest responses
+    LawFirm ->> Egal: Select response
+    LawFirm ->> Egal: Edit response (optional)
+    LawFirm ->> Client: Send response (via Egal)
+    Client ->> Egal: Converse on response
+    Egal ->> Egal: Store record of interaction (encrypted)
+    LawFirm ->> Egal: Request record of interactions
+    Egal ->> LawFirm: Display record of interactions
+    Client ->> Egal: Request record of interactions
+    Egal ->> Client: Display interactions
+```
