@@ -22,4 +22,4 @@ jobs:
         with:
           working-directory: applications/egal
           browser: electron
-          start: yarn turbo ci:test
+          start: yarn ci:test
