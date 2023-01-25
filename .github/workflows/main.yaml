@@ -3,7 +3,7 @@ name: Cypress Tests
 on: [push]
 
 jobs:
-  cypress-run:
+  e2e-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,4 +22,7 @@ jobs:
         with:
           working-directory: applications/egal
           browser: electron
+          build: yarn build_and_start
           start: yarn ci:test
+          wait-on: http://localhost:3000
+
