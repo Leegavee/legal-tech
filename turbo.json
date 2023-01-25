@@ -5,6 +5,14 @@
       "outputs": [".next/**"]
     },
     "lint": {},
-    "format": {}
+    "format": {},
+    "dev": {},
+    "start": {
+      "dependsOn": [
+        "^build"
+      ],
+      "env": [],
+      "outputs": [".next/**"]
+    }
   }
 }
