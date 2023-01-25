@@ -22,10 +22,18 @@ You will need to have the following installed on your local machine:
 
 To install the necessary dependencies, run the following command:
 
-```
+```bash
 git clone git@github.com:Leegavee/legal-tech.git
 cd legal-tech
 yarn
+```
+
+### This is a Turbo repo
+
+This repo is a Turbo repo. It is a monorepo that uses [Turbo](https://turbo.build) to manage the build process.
+
+```bash
+yarn add global turbo
 ```
 
 ## Repo Structure
