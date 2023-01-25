@@ -12,7 +12,8 @@
     "cy": "cypress open",
     "ci:cy": "cypress run",
     "e2e": "start-server-and-test --expect 200 start http://127.0.0.1:3000 cy",
-    "ci:e2e": "start-server-and-test --expect 200 start http://127.0.0.1:3000 ci:cy"
+    "ci:e2e": "start-server-and-test --expect 200 start http://127.0.0.1:3000 ci:cy",
+    "ci:test" : "npm run lint && npm run ci:e2e"
   },
   "dependencies": {
     "@next/font": "13.1.5",

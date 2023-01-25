@@ -7,9 +7,11 @@
     "lint": {},
     "format": {},
     "dev": {},
+    "ci:test": {},
     "start": {
       "dependsOn": [
-        "^build"
+        "^build",
+        "ci:test"
       ],
       "env": [],
       "outputs": [".next/**"]
