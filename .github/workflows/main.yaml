@@ -8,10 +8,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.13.0
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn
+
       - name: Cypress run
         uses: cypress-io/github-action@v5.0.5
         with:
-          browser: chrome
-          start: turbo ci:test
+          working-directory: applications/egal
+          browser: electron
+          start: yarn turbo ci:test
