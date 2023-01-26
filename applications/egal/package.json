@@ -10,7 +10,7 @@
     "lint": "next lint",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
     "cy": "cypress open",
-    "ci:cy": "cypress run --headless --config-file cypress.config.ts --browser electron",
+    "ci:cy": "ELECTRON_RUN_AS_NODE=1 cypress run --headless --config-file cypress.config.ts --browser electron",
     "e2e": "start-server-and-test --expect 200 start http://127.0.0.1:3000 cy",
     "ci:e2e": "start-server-and-test --expect 200 build_and_start http://127.0.0.1:3000 ci:cy",
     "ci:test" : "npm run lint && npm run ci:e2e"
