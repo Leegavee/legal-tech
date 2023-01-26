@@ -23,9 +23,7 @@ jobs:
         run:  yarn install --frozen-lockfile
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5.0.5gst
-        env:
-          ELECTRON_RUN_AS_NODE:1
+        uses: cypress-io/github-action@v5.0.5
         with:
           working-directory: applications/egal
           browser: electron
