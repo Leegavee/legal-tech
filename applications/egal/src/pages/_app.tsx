@@ -1,6 +1,6 @@
 import '@legavee/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { Layout } from '@legavee/components/layout';
+import { Layout } from '@legavee/modules';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import '../styles/globals.css';
 
