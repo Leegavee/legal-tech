@@ -10,6 +10,10 @@ const nextConfig = {
       preventFullImport: true,
     },
   },
+  images: {
+    domains: ['lh3.googleusercontent.com'],
+    deviceSizes: [20, 40, 60]
+  }
 };
 
 module.exports = nextConfig;

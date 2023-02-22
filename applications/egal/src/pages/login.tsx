@@ -1,9 +1,19 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Icons } from '@legavee/icons';
 import Image from 'next/image';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user]);
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">

@@ -1,5 +1,5 @@
 import React from 'react';
-export type MessageItem = {
+export interface MessageItem {
   avatar: string;
   message: string;
   createdAt: Date;

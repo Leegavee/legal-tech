@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 
-export type UserProfileType = {
+export interface UserProfileType {
   picture: string;
   name: string;
   nickname: string;
 };
+
 export const UserProfile = (user: UserProfileType) => {
   return (
     <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
@@ -14,6 +15,7 @@ export const UserProfile = (user: UserProfileType) => {
           width={20}
           height={20}
           src={user.picture}
+          sizes="50"
           alt="Avatar"
           className="h-full w-full"
         />
