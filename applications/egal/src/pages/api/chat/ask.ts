@@ -8,6 +8,7 @@ const openAIConfig = new Configuration({
 
 const openapi = new OpenAIApi(openAIConfig);
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
     try {
         const { prompt } = req.body;
