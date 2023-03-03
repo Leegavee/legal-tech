@@ -39,7 +39,7 @@ const DotVariants = {
 
 const DotTransition: Transition = {
   duration: 0.5,
-  repeatType: 'loop'
+  repeatType: 'loop',
 };
 
 export interface ILoadingProps {
