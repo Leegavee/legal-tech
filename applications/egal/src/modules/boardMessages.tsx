@@ -5,7 +5,7 @@ import {
   ChatItem,
   Loading,
 } from '@legavee/components';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export const BoardMessages = () => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -13,11 +13,21 @@ export const BoardMessages = () => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
   const [loading, setLoading] = useState<boolean>(false);
+  const messageEl:any = useRef(null);
+   useEffect(() => {
+    if (messageEl) {
+      messageEl.current.addEventListener('DOMNodeInserted', (event: any) => {
+        console.log(event)
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
+    }
+  }, [])
 
   return (
     <div className="flex flex-col flex-auto h-full p-6">
       <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
-        <div className="flex flex-col h-full overflow-x-auto mb-4">
+        <div className="flex flex-col h-full overflow-x-auto mb-4" ref={messageEl}>
           <div className="flex flex-col h-full">
             <div className="grid grid-cols-12 gap-y-2 relative">
               {messages.map((item: MessageItem, index: number) => {
