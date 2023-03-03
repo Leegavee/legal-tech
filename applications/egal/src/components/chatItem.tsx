@@ -5,11 +5,12 @@ import { MessageItem } from './messageLeft';
 
 export interface IChatItemProps {
   pushMessage: (e: MessageItem) => void;
+  setLoading: (e: boolean) => void;
 }
 
 export const ChatItem = (props: IChatItemProps) => {
   const { user } = useUser();
-  const { pushMessage } = props;
+  const { pushMessage, setLoading } = props;
   const [message, setMessage] = useState('');
   const [onRequest, setOnRequest] = useState(false);
 
@@ -24,6 +25,7 @@ export const ChatItem = (props: IChatItemProps) => {
     });
     setMessage('');
     setOnRequest(true);
+    setLoading(true)
 
     const res: any = await axiosClient.post('/chat/ask', { prompt: message });
     if (res && res.text) {
@@ -34,6 +36,7 @@ export const ChatItem = (props: IChatItemProps) => {
         position: 'left',
       });
       setOnRequest(false);
+      setLoading(false)
     }
   };
   return (

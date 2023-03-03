@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, Transition } from 'framer-motion';
 
 const LoadingDot = {
   display: 'block',
@@ -29,23 +30,22 @@ const ContainerVariants = {
 
 const DotVariants = {
   initial: {
-    y: '0%',
+    y: '-70%',
   },
   animate: {
-    y: '100%',
+    y: '30%',
   },
 };
 
-const DotTransition = {
+const DotTransition: Transition = {
   duration: 0.5,
-  yoyo: Infinity,
-  ease: 'easeInOut',
+  repeatType: 'loop'
 };
 
 export interface ILoadingProps {
   isVisible: boolean;
 }
-export const Loading = ({ isVisible }: ILoadingProps) => (
+export const Loading = () => (
   <div
     style={{
       display: 'flex',
@@ -56,7 +56,7 @@ export const Loading = ({ isVisible }: ILoadingProps) => (
     <motion.div
       style={LoadingContainer}
       variants={ContainerVariants}
-      initial="initial"
+      initial="active"
       animate="animate"
     >
       <motion.span
