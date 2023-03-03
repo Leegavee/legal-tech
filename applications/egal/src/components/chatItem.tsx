@@ -15,10 +15,11 @@ export const ChatItem = (props: IChatItemProps) => {
   const [onRequest, setOnRequest] = useState(false);
 
   const handleSendMessage = async () => {
+    
+    if (!message.trim()) return;
     if (onRequest) return;
-
     pushMessage({
-      avatar: user?.nickname ? user?.nickname[0] : 'A',
+      avatar: user?.nickname ? user?.nickname[0].toUpperCase() : 'A',
       message: message,
       createdAt: new Date(),
       position: 'right',
@@ -27,7 +28,9 @@ export const ChatItem = (props: IChatItemProps) => {
     setOnRequest(true);
     setLoading(true);
 
-    const res: any = await axiosClient.post('/chat/ask', { prompt: message });
+    const res: any = await axiosClient.post('/chat/ask', {
+      prompt: message.trim(),
+    });
     if (res && res.text) {
       pushMessage({
         avatar: 'B',
@@ -48,24 +51,27 @@ export const ChatItem = (props: IChatItemProps) => {
               maxHeight: '200px',
               resize: 'none',
               paddingTop: '5px',
-              paddingBottom: '5px'
+              paddingBottom: '5px',
             }}
             value={message}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-              e.target.style.height = 'inherit';
-              e.target.style.height = `${e.target.scrollHeight}px`;
+              if (e.target.scrollHeight > 58) {
+                e.target.style.height = 'inherit';
+                e.target.style.height = `${e.target.scrollHeight}px`;
+              }
               if (!e.target.value) {
                 e.target.style.height = `40px`;
               }
-              setMessage(e.target.value)
-            }
-              
-            }
+              if (e.target.value.trim()) {
+                setMessage(e.target.value);
+              }
+            }}
             onKeyDown={(e: any) => {
               if (!e.target.value) {
                 e.target.style.height = `40px`;
               }
               if (e.key === 'Enter') {
+                e.target.style.height = `40px`;
                 handleSendMessage();
               }
             }}
