@@ -5,7 +5,7 @@ export interface UserProfileType {
   picture: string;
   name: string;
   nickname: string;
-};
+}
 
 export const UserProfile = (user: UserProfileType) => {
   return (

@@ -3,6 +3,7 @@ import {
   MessageLeft,
   MessageRight,
   ChatItem,
+  Loading,
 } from '@legavee/components';
 import React, { useState } from 'react';
 
@@ -11,6 +12,7 @@ export const BoardMessages = () => {
   const pushMessage = (newMessage: any) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
+  const [loading, setLoading] = useState<boolean>(true);
 
   return (
     <div className="flex flex-col flex-auto h-full p-6">
@@ -18,6 +20,11 @@ export const BoardMessages = () => {
         <div className="flex flex-col h-full overflow-x-auto mb-4">
           <div className="flex flex-col h-full">
             <div className="grid grid-cols-12 gap-y-2">
+              {loading && (
+                <MessageLeft avatar="B">
+                  <Loading isVisible={loading} />
+                </MessageLeft>
+              )}
               {messages.map((item: MessageItem, index: number) => {
                 return item.position === 'left' ? (
                   <MessageLeft key={`key-left-${index}`} {...item} />

@@ -1,10 +1,11 @@
 import React from 'react';
 export interface MessageItem {
-  avatar: string;
-  message: string;
-  createdAt: Date;
-  position: 'left' | 'right';
-};
+  avatar?: string;
+  message?: string;
+  createdAt?: Date;
+  position?: 'left' | 'right';
+  children?: React.ReactNode;
+}
 export const MessageLeft = (props: MessageItem) => {
   return (
     <div className="col-start-1 col-end-8 p-3 rounded-lg">
@@ -14,6 +15,7 @@ export const MessageLeft = (props: MessageItem) => {
         </div>
         <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
           <div>{props.message}</div>
+          {props.children}
         </div>
       </div>
     </div>
