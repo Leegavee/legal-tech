@@ -62,6 +62,7 @@ export const RewordPopup = () => {
                     setEmailClient(e.target.value);
                   }
                 }}
+                value={emailClient}
               ></textarea>
             </div>
             <div>
