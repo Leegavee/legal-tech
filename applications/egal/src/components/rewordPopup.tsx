@@ -1,4 +1,9 @@
-import { IoArrowForwardOutline, IoCloseCircle, IoSyncSharp } from './icons';
+import {
+  IoArrowForwardOutline,
+  IoCloseCircle,
+  IoSyncSharp,
+  IoCloudDownloadSharp,
+} from './icons';
 import { PopUp } from './popup';
 import { useState } from 'react';
 import axiosClient from '../utils/axios';
@@ -27,6 +32,14 @@ export const RewordPopup = () => {
       setEmailReworded(res.text.trim());
     }
     setLoading(false);
+  };
+  const saveEmailReworded = () => {
+    const element = document.createElement('a');
+    const file = new Blob([emailReworded.trim()], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = 'reworded-email.txt';
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
   };
   return (
     <PopUp
@@ -75,14 +88,25 @@ export const RewordPopup = () => {
               </button>
             </div>
             <div className="relative">
-              <div className="text-center mb-2 font-medium underline">
+              <div className="text-center mb-2 font-medium underline relative">
                 Email reworded
+                <button
+                  onClick={saveEmailReworded}
+                  className="absolute right-2"
+                >
+                  <IoCloudDownloadSharp size={25} color="blue" />
+                </button>
               </div>
               <textarea
                 className="bg-white border rounded-xl focus:outline-none focus:border-indigo-300 p-2"
                 cols={70}
                 rows={30}
                 value={emailReworded}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                  if (e.target.value.trim()) {
+                    setEmailReworded(e.target.value);
+                  }
+                }}
               ></textarea>
               {loading && <Loading2 className="absolute inset-1/2" />}
             </div>
