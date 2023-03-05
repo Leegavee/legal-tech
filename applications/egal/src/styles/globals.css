@@ -106,6 +106,14 @@ a {
   }
 }
 
+.my-popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  width: auto !important;
+  padding: 5px;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

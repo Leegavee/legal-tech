@@ -5,3 +5,4 @@ export * from './messageLeft';
 export * from './messageRight';
 export * from './chatItem';
 export * from './loading';
+export * from './icons';
