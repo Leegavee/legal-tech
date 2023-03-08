@@ -20,6 +20,7 @@ export default function NavBar() {
 
   if (!user) return <>NO USER</>;
 
+  // @ts-ignore
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -88,6 +89,7 @@ export default function NavBar() {
                         className="h-8 w-8 rounded-full"
                         src={user?.picture || 'https://i.pravatar.cc/300'}
                         alt=""
+                        referrerPolicy="no-referrer"
                       />
                     </Menu.Button>
                   </div>

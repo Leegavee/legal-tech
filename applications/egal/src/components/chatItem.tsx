@@ -30,7 +30,7 @@ export const ChatItem = (props: IChatItemProps) => {
     setOnRequest(true);
     setLoading(true);
 
-    const res: any = await axiosClient.post('/chat/ask', {
+    const res: any = await axiosClient.post('/api/chat/ask', {
       prompt: message.trim(),
     });
     if (res && res.text) {
