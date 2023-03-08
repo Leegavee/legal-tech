@@ -17,6 +17,8 @@ title: Egal Day One Architecture
 
         CASE_HISTORY_ITEM }|..o{ CASE_HISTORY_SESSION: "has many"
 
+        CASE_HISTORY_SESSION }|..o{ CASE_HISTORY_MESSAGES: "has many"
+
         PRACTICE {
             string title
             string email
@@ -72,7 +74,13 @@ title: Egal Day One Architecture
         
         CASE_HISTORY_SESSION {
             case_session_type type
-            messages[] messages
+            caseHistoryMessages[] messages
             case_history_session_state state
+        }
+
+        CASE_HISTORY_MESSAGES {
+            string type
+            string role
+            string content
         }
 ```
