@@ -1,15 +1,19 @@
 import { BoardMessages, Layout } from '@legavee/modules';
-import { Inter } from '@next/font/google';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-const inter = Inter({ subsets: ['latin'] });
+const CaseSession = () => {
+  return (
+    <>
+      <h1>Case Session</h1>
+      {/*<BoardMessages />*/}
+    </>
+  );
+};
 
 export default function Home() {
   return (
     <Layout>
-      <BoardMessages />
+      <CaseSession />
     </Layout>
   );
 }
-
-export const getServerSideProps = withPageAuthRequired();

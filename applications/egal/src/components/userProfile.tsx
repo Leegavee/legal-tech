@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 
 export interface UserProfileType {
-  picture: string;
-  name: string;
-  nickname: string;
+  picture: string | undefined | null;
+  name: string | undefined | null;
+  nickname: string | undefined | null;
 }
 
 export const UserProfile = (user: UserProfileType) => {
@@ -14,7 +14,7 @@ export const UserProfile = (user: UserProfileType) => {
         <Image
           width={20}
           height={20}
-          src={user.picture}
+          src={user.picture || 'https://via.placeholder.com/150'}
           sizes="50"
           alt="Avatar"
           className="h-full w-full"
