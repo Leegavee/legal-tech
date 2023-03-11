@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 // @ts-ignore
 function classNames(...classes) {
@@ -22,10 +23,10 @@ export default function NavBar() {
 
   // @ts-ignore
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-50">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -40,15 +41,19 @@ export default function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
+                  <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src="/legavee-icon.png"
+                    alt="Legavee - Egal."
+                    width={120}
+                    height={120}
                   />
-                  <img
+                  <Image
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src="/legavee-icon.png"
+                    alt="Legavee - Egal."
+                    width={120}
+                    height={120}
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
