@@ -1,6 +1,8 @@
 import React from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
+import { marked } from 'marked';
+import renderer from './markdown-renderer';
 
 interface Props {
   messages: {
@@ -24,22 +26,20 @@ function ChatMessages({ messages, isLoading }: Props) {
             className={`flex flex-col ${
               message.role === 'user' ? 'items-end' : 'items-start'
             }`}
-            style={{ minWidth: '50%' }}
           >
             <div
               className={`${
                 message.role === 'user'
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-800'
-              } inline-block rounded-lg px-4 py-2 max-w-md break-all`}
-              style={{
-                whiteSpace: 'pre-wrap',
-                wordWrap: 'break-word',
-                padding: '8px',
-                borderRadius: '8px',
-              }}
+              } inline-block rounded-lg px-4 py-2 max-w-xl `}
             >
-              {message.content}
+              <div
+                className={`msg msg-${message.role}`}
+                dangerouslySetInnerHTML={{
+                  __html: marked.parse(message.content, { renderer }),
+                }}
+              />
             </div>
             <div
               className={`${
