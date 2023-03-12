@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -15,19 +16,20 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "types": ["cypress"]
+    "paths": {
+      "@legavee/*": [
+        "./src/*"
+      ]
+    },
+    "types": ["jest", "node"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
   "exclude": [
-    "node_modules"
-  ],
-  "files": ["../cypress.config.ts"]
+    "./cypress.config.ts",
+    "node_modules",
+    "cypress"
+  ]
 }
