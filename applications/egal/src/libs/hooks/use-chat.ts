@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { sendMessage, type SendMessageRequest } from '../clients/chat-client';
-import { type ChatResponse } from '../clients/chat-client.types';
+import {
+  type ChatMessage,
+  type ChatResponse,
+} from '../clients/chat-client.types';
 
-export function useChat() {
-  const [messages, setMessages] = useState<ChatResponse[]>([]);
+export function useChat(initialState: ChatMessage[]) {
+  const [messages, setMessages] = useState<ChatMessage[]>(initialState);
   const [isLoading, setIsLoading] = useState(false);
 
   const sendMessageAsync = async (request: SendMessageRequest) => {
     setIsLoading(true);
     try {
       const response = await sendMessage(request);
-      // @ts-ignore
-      setMessages([...messages, ...response.messages]);
+      setMessages([...response.messages]);
     } catch (error) {
       console.error(error);
       setMessages([

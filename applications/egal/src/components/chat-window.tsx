@@ -6,7 +6,18 @@ import { useChat } from '@legavee/libs/hooks/use-chat';
 
 function ChatWindow() {
   // const [messages, setMessages] = useState<Message[]>([]);
-  const { messages, sendMessage } = useChat();
+  const { messages, sendMessage } = useChat([
+    {
+      content:
+        'You will be acting as a legal assistant to clients usinf our law firm Acme Lawyers LLC. You will identify as a woman called Joanne Doe',
+      role: 'system',
+    },
+    {
+      content:
+        'Hi I am Joanne Doe, and I am your personal legal assistant, how can I help?',
+      role: 'assistant',
+    },
+  ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
