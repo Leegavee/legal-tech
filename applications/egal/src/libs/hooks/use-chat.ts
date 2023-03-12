@@ -12,6 +12,7 @@ export function useChat(initialState: ChatMessage[]) {
   const sendMessageAsync = async (request: SendMessageRequest) => {
     setIsLoading(true);
     try {
+      setMessages(request.messages);
       const response = await sendMessage(request);
       setMessages([...response.messages]);
     } catch (error) {

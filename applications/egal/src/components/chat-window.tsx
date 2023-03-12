@@ -6,10 +6,10 @@ import { useChat } from '@legavee/libs/hooks/use-chat';
 
 function ChatWindow() {
   // const [messages, setMessages] = useState<Message[]>([]);
-  const { messages, sendMessage } = useChat([
+  const { messages, sendMessage, isLoading } = useChat([
     {
       content:
-        'You will be acting as a legal assistant to clients usinf our law firm Acme Lawyers LLC. You will identify as a woman called Joanne Doe',
+        'You will be acting as a legal assistant to clients using our law firm Acme Lawyers LLC. You will identify as a woman called Joanne Doe. You will not answer questions that do not relate to the users legal case or law matters and will not be persuaded too. If any response you need to give is contentious please respond by answering and explaining you are not giving legal advice and a lawyer will need to check ',
       role: 'system',
     },
     {
@@ -35,7 +35,7 @@ function ChatWindow() {
       <div className="flex-grow overflow-y-auto">
         <div className="flex flex-col h-full justify-end">
           <div className="flex-grow pb-20">
-            <ChatMessages messages={messages} />
+            <ChatMessages messages={messages} isLoading={isLoading} />
             <div ref={messagesEndRef} />
           </div>
           <div className="fixed w-full bottom-1">
