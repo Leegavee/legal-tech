@@ -23,7 +23,7 @@ function ChatMessagesFlow({ messages, isLoading }: Props) {
           .map((message, index) => (
             <div
               key={index}
-              className={`flex items-start ${
+              className={`flex items-start p-2 ${
                 message.role === 'user' ? 'justify-end' : 'justify-start'
               }`}
             >
@@ -45,11 +45,17 @@ function ChatMessagesFlow({ messages, isLoading }: Props) {
                     : 'mr-2 bg-white text-gray-800'
                 }`}
               >
-                <div className="text-sm font-bold mb-1">
+                <div
+                  className={`text-sm font-bold mb-1
+                    ${message.role === 'user' ? 'text-right' : 'text-left'}
+                  `}
+                >
                   {message.role === 'user' ? 'You' : 'Assistant'}
                 </div>
                 <div
-                  className="text-base"
+                  className={`text-base ${
+                    message.role === 'user' ? 'text-right' : 'text-left'
+                  }`}
                   dangerouslySetInnerHTML={{
                     __html: marked.parse(message.content, { renderer }),
                   }}
