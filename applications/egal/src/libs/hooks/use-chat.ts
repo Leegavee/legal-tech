@@ -40,7 +40,7 @@ export function useChat(initialState: ChatMessage[]) {
       //   ],
       // });
     }
-  }, []);
+  }, [messages.length]);
 
   return {
     messages,

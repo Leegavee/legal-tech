@@ -36,10 +36,16 @@ model Case {
 }
 
 model Client {
-  id           String @id @default(cuid())
-  auth0_id     String
-  name         String
-  email        String
-  phone_number String
-  Case         Case[]
+  id              String @id @default(cuid())
+  auth0_id        String @unique
+  title           String
+  first_name      String
+  last_name       String
+  email           String
+  phone_number    String
+  street_address  String
+  city            String
+  county          String
+  post_code       String
+  Case            Case[]
 }
