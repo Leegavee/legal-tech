@@ -126,7 +126,7 @@ export default function NavBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <Link
                             href="/api/auth/logout"
                             className={classNames(
                               active ? 'bg-gray-100' : '',
@@ -134,7 +134,7 @@ export default function NavBar() {
                             )}
                           >
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>
