@@ -4,19 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { Client } from '@legavee/graphql/resolvers';
+import { ApolloProvider, useQuery, useMutation } from '@apollo/client';
 import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  useQuery,
-  gql,
-  useMutation,
-} from '@apollo/client';
-
-const apolloClient = new ApolloClient({
-  uri: '/api/graphql',
-  cache: new InMemoryCache(),
-});
+  UPDATE_CLIENT_MUTATION,
+  CREATE_CLIENT_MUTATION,
+} from '../libs/domain/client/mutations';
+import { GET_CLIENT_QUERY } from '../libs/domain/client/queries';
+import { apolloClient } from '../libs/clients/apollo-client';
 
 type AccountSettingsForm = {
   title: { value: string };
@@ -29,57 +23,6 @@ type AccountSettingsForm = {
   county: { value: string };
   post_code: { value: string };
 };
-
-const GET_CLIENT_QUERY = gql`
-  query getClient($auth0_id: String!) {
-    client(auth0_id: $auth0_id) {
-      title
-      first_name
-      last_name
-      auth0_id
-      email
-      phone_number
-      street_address
-      city
-      county
-      post_code
-    }
-  }
-`;
-
-const CREATE_CLIENT_MUTATION = gql`
-  mutation createClient($client: ClientInput!) {
-    createClient(client: $client) {
-      title
-      first_name
-      last_name
-      auth0_id
-      email
-      phone_number
-      street_address
-      city
-      county
-      post_code
-    }
-  }
-`;
-
-const UPDATE_CLIENT_MUTATION = gql`
-  mutation updateClient($client: ClientInput!) {
-    updateClient(client: $client) {
-      title
-      first_name
-      last_name
-      auth0_id
-      email
-      phone_number
-      street_address
-      city
-      county
-      post_code
-    }
-  }
-`;
 
 function AccountSettingsLoader() {
   const { user, isLoading } = useUser();
