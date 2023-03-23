@@ -11,12 +11,12 @@ const nextConfig = {
     },
   },
   images: {
-    domains: ['lh3.googleusercontent.com'],
-    deviceSizes: [20, 40, 60]
+    domains: ['lh3.googleusercontent.com', 's.gravatar.com'],
+    deviceSizes: [20, 40, 60, 100],
   },
   env: {
     API_URL: process.env.API_URL,
-  }
+  },
 };
 
 module.exports = nextConfig;
