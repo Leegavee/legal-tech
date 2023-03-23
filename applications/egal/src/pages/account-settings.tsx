@@ -38,16 +38,23 @@ function AccountSettingsLoader() {
 function AuthenticatedAccountSettingsForm(user: any) {
   const auth0_id = user?.user?.sub;
   const [clientFormValues, setClientFormValues] = useState<Client | null>(null);
-  const [updateClient] = useMutation(UPDATE_CLIENT_MUTATION);
-  const [createClient] = useMutation(CREATE_CLIENT_MUTATION);
+  const [updateClient, { loading: updateClientSaving }] = useMutation(
+    UPDATE_CLIENT_MUTATION,
+  );
+  const [createClient, { loading: createClientSaving }] = useMutation(
+    CREATE_CLIENT_MUTATION,
+  );
   const [client, setClient] = useState<Client | null>(null);
-  const { loading, error, data } = useQuery(GET_CLIENT_QUERY, {
+  const {
+    loading: loadingClientData,
+    error,
+    data,
+  } = useQuery(GET_CLIENT_QUERY, {
     variables: {
       auth0_id,
     },
     skip: !auth0_id,
     onCompleted: (data) => {
-      console.log('data:', data);
       setClient(data.client);
       if (!client) {
         // set default form values when there is no initial client data
@@ -81,10 +88,6 @@ function AuthenticatedAccountSettingsForm(user: any) {
     return <p>Error loading client data</p>;
   }
 
-  if (loading) {
-    return <p>Loading client data...</p>;
-  }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (client) {
@@ -102,7 +105,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClientFormValues({
       ...(clientFormValues as Client),
       [e.target.name]: e.target.value,
@@ -115,6 +118,11 @@ function AuthenticatedAccountSettingsForm(user: any) {
       onSubmit={handleSubmit}
     >
       <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+        {(loadingClientData || updateClientSaving || createClientSaving) && (
+          <div className="absolute top-0 left-0 w-full h-full bg-gray-400 bg-opacity-50 flex items-center justify-center">
+            <div className="w-6 h-6 border-4 border-gray-100 rounded-full spin"></div>
+          </div>
+        )}
         <div className="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
           <div>
             <h1 className="text-3xl font-bold leading-6 text-gray-900 pb-5">
@@ -142,7 +150,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="title"
                   autoComplete="title"
                   value={(clientFormValues?.title || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
@@ -162,7 +170,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="first_name"
                   autoComplete="first_name"
                   value={(clientFormValues?.first_name || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
@@ -182,7 +190,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="last_name"
                   autoComplete="last_name"
                   value={(clientFormValues?.last_name || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
@@ -202,7 +210,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   type="email"
                   autoComplete="email"
                   value={(clientFormValues?.email || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -222,7 +230,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   type="text"
                   autoComplete="phone_number"
                   value={(clientFormValues?.phone_number || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -242,7 +250,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="street_address"
                   autoComplete="street_address"
                   value={(clientFormValues?.street_address || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -262,7 +270,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="city"
                   autoComplete="city"
                   value={(clientFormValues?.city || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
@@ -282,7 +290,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="county"
                   autoComplete="county"
                   value={(clientFormValues?.county || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
@@ -302,7 +310,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
                   id="post_code"
                   autoComplete="post_code"
                   value={(clientFormValues?.post_code || '') as string}
-                  onChange={handleChange}
+                  onChange={handleFormInputChange}
                   className="block w-full max-w-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 />
               </div>
