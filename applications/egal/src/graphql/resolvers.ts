@@ -24,8 +24,14 @@ const resolvers = {
     ): Prisma.Prisma__ClientClient<
       Prisma.ClientGetPayload<Prisma.ClientArgs> | null,
       null
-    > => {
-      return prisma.client.findFirst({ where: { auth0_id } });
+    > | null => {
+      let client = null;
+      try {
+        client = prisma.client.findFirst({ where: { auth0_id } });
+      } catch (e) {
+        console.error(e);
+      }
+      return client;
     },
   },
   Mutation: {
