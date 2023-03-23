@@ -105,3 +105,30 @@ a {
     color-scheme: dark;
   }
 }
+
+.my-popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  width: auto !important;
+  padding: 5px;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

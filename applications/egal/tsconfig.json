@@ -28,9 +28,12 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "tailwind.config.js"
   ],
   "exclude": [
-    "node_modules"
+    "./cypress.config.ts",
+    "node_modules",
+    "cypress"
   ]
 }

@@ -38,10 +38,10 @@ sequenceDiagram
     LawFirm ->> Client: Respond
     Client ->> LawFirm: Respond
     Egal ->> LawFirm: Suggest responses
-    LawFirm ->> Egal: Select response
-    LawFirm ->> Egal: Edit response (optional)
-    LawFirm ->> Client: Send response (via Egal)
-    Client ->> Egal: Converse on response
+    LawFirm ->> Egal: Select chatGptResponse
+    LawFirm ->> Egal: Edit chatGptResponse (optional)
+    LawFirm ->> Client: Send chatGptResponse (via Egal)
+    Client ->> Egal: Converse on chatGptResponse
     Egal ->> Egal: Store record of interaction (encrypted)
     LawFirm ->> Egal: Request record of interactions
     Egal ->> LawFirm: Display record of interactions

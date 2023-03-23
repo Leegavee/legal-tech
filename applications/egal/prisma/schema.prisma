@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model CaseHistorySession {
+//   id                         String                      @id @default(cuid())
+//   case_session_type          String
+//   messages                   CaseHistorySessionMessage[] @relation(fields: [caseHistorySessionId], references: [id])
+//   caseHistorySessionId       String[]
+//   case_history_session_state String
+// }
+
+// model CaseHistorySessionMessage {
+//   id                   String              @id @default(cuid())
+//   type                 String
+//   role                 String
+//   content              String
+//   CaseHistorySession   CaseHistorySession? @relation(fields: [caseHistorySessionId], references: [id])
+//   caseHistorySessionId String?
+// }
+
+model Case {
+  id       String @id @default(cuid())
+  notes    String
+  clent    Client @relation(fields: [clientId], references: [id])
+  clientId String
+  // case_history  CaseHistorySession[]
+}
+
+model Client {
+  id              String @id @default(cuid())
+  auth0_id        String @unique
+  title           String
+  first_name      String
+  last_name       String
+  email           String
+  phone_number    String
+  street_address  String
+  city            String
+  county          String
+  post_code       String
+  Case            Case[]
+}

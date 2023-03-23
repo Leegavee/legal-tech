@@ -12,6 +12,19 @@ yarn dev
 pnpm dev
 ```
 
+## Running Postgres with Docker locally
+
+```zsh
+    docker run -d \
+        --name dev-postgres \
+        -e POSTGRES_PASSWORD=Pass2020! \
+        -v /Users/lewis/code/legavee/legal-tech/.postgres/:/var/lib/postgresql/data \
+    -p 5432:5432 \
+    postgres
+```
+
+```bash
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
