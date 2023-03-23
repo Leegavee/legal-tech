@@ -71,7 +71,6 @@ function AuthenticatedAccountSettingsForm(user: any) {
           post_code: '',
         });
       } else {
-        console.log('client:', data.client);
         setClientFormValues(data.client);
       }
     },
