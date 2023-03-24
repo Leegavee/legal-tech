@@ -109,3 +109,6 @@ dist
 .turbo
 **/.turbo
 **/.idea
+
+.DS_Store
+**/.DS_Store
