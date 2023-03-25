@@ -1,16 +1,78 @@
-import { BoardMessages, Layout } from '@legavee/modules';
-import { Inter } from '@next/font/google';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import React from 'react';
 import { DefaultLayout } from '@legavee/layouts/default-layout';
+import DashboardHeader from '@legavee/components/dashboard-header';
+import useLoggedInClient from '@legavee/libs/hooks/useLoggedInClient';
+import EventList from '@legavee/components/event-list/event-list';
+import { Event } from '@legavee/components/event-list/types';
 
-const inter = Inter({ subsets: ['latin'] });
+const mockEvents: Event[] = [
+  {
+    id: 1,
+    type: 'Communication: in',
+    summary: 'Received email from Laura Richards',
+    date: new Date(2022, 2, 15, 10, 30),
+    status: 'NEW',
+  },
+  {
+    id: 2,
+    type: 'Communication: out',
+    summary: 'Sent email to Laura Richards',
+    date: new Date(2022, 2, 14, 14, 0),
+    status: 'COMPLETE',
+  },
+  {
+    id: 3,
+    type: 'Work completed',
+    summary: 'Drafted email to client',
+    date: new Date(2022, 2, 14, 10, 0),
+    status: 'COMPLETE',
+  },
+  {
+    id: 4,
+    type: 'Notification',
+    summary: 'Reminder: Awaiting payment',
+    date: new Date(2022, 2, 10, 16, 30),
+    status: 'READ',
+  },
+  {
+    id: 5,
+    type: 'Notification',
+    summary: 'Deadline approaching for statement',
+    date: new Date(2022, 2, 10, 10, 0),
+    status: 'READ',
+  },
+  {
+    id: 6,
+    type: 'Communication: out',
+    summary: 'Sent letter to Christine French',
+    date: new Date(2022, 2, 8, 11, 0),
+    status: 'COMPLETE',
+  },
+  {
+    id: 7,
+    type: 'Communication: in',
+    summary: 'Received phone call from Laura Richards',
+    date: new Date(2022, 2, 7, 14, 30),
+    status: 'COMPLETE',
+  },
+  {
+    id: 8,
+    type: 'Communication: internal',
+    summary: 'Discuss case with assistant',
+    date: new Date(2022, 2, 4, 9, 0),
+    status: 'COMPLETE',
+  },
+];
 
 export default function Home() {
+  const { data, loading: loadingClient } = useLoggedInClient();
+
   return (
     <DefaultLayout>
       <div className="p-8">
-        <h1 className="text-3xl">Home</h1>
+        <DashboardHeader />
+        <EventList events={mockEvents} />
       </div>
     </DefaultLayout>
   );

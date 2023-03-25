@@ -3,7 +3,7 @@ import React from 'react';
 import ChatWindow from '@legavee/components/chat-window';
 import { DefaultLayout } from '@legavee/layouts/default-layout';
 
-export default function Demo() {
+export default function Chat() {
   return (
     <DefaultLayout>
       <ChatWindow />

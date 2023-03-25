@@ -9,7 +9,7 @@ export const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow bg-white">{children}</div>
     </div>
   );
 };

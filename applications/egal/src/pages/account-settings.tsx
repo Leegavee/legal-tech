@@ -1,31 +1,18 @@
 import NavBar from '@legavee/components/nav-bar';
 import React, { useEffect, useState } from 'react';
-import { useUser } from '@auth0/nextjs-auth0/client';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { ApolloProvider, useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import {
   UPDATE_CLIENT_MUTATION,
   CREATE_CLIENT_MUTATION,
 } from '../graphql/client/documents/mutations';
-import { apolloClient } from '../libs/clients/apollo-client';
-import {
-  useGetClientQuery,
-  Client,
-} from '@legavee/graphql/client/client-gql-types';
 
-function AccountSettingsLoader() {
-  const { user, isLoading } = useUser();
+import { Client, Scalars } from '@legavee/graphql/client/client-gql-types';
 
-  if (!isLoading) {
-    return <AuthenticatedAccountSettingsForm user={user} />;
-  } else {
-    return <p className={'text-black'}>Authenticating...</p>;
-  }
-}
+import useLoggedInClient from '@legavee/libs/hooks/useLoggedInClient';
 
 // TODO: figure out what is happening with the user object!
-function AuthenticatedAccountSettingsForm(user: any) {
-  const auth0_id = user?.user?.sub;
+function AuthenticatedAccountSettingsForm() {
   const [clientFormValues, setClientFormValues] = useState<Client | null>(null);
   const [updateClient, { loading: updateClientSaving }] = useMutation(
     UPDATE_CLIENT_MUTATION,
@@ -34,27 +21,24 @@ function AuthenticatedAccountSettingsForm(user: any) {
     CREATE_CLIENT_MUTATION,
   );
   const [client, setClient] = useState<Client | null>(null);
-  const { data, loading: loadingClient } = useGetClientQuery({
-    variables: {
-      auth0_id,
-    },
-  });
+  const {
+    client: loggedInClient,
+    loading: loadingClient,
+    isClientPersisted,
+  } = useLoggedInClient();
+  const clientDataSaved = () => {};
 
   useEffect(() => {
     // TODO: fix the casting problems below
-    if (data && data.client) {
-      // @ts-ignore
-      setClientFormValues(data.client);
-      // @ts-ignore
-      setClient(data.client);
-    } else {
-      setClientFormValues(null);
-    }
-  }, [data]);
+    // @ts-ignore
+    setClientFormValues(loggedInClient);
+    // @ts-ignore
+    setClient(loggedInClient);
+  }, [loggedInClient]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (client) {
+    if (isClientPersisted) {
       await updateClient({
         variables: {
           client: { ...clientFormValues, __typename: undefined },
@@ -402,14 +386,12 @@ function AuthenticatedAccountSettingsForm(user: any) {
 
 export default function AccountSettings() {
   return (
-    <ApolloProvider client={apolloClient}>
-      <div className="flex flex-col bg-white">
-        <NavBar />
-        <div className="flex-grow p-10">
-          <AccountSettingsLoader />
-        </div>
+    <div className="flex flex-col bg-white">
+      <NavBar />
+      <div className="flex-grow p-10">
+        <AuthenticatedAccountSettingsForm />
       </div>
-    </ApolloProvider>
+    </div>
   );
 }
 
