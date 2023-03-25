@@ -61,6 +61,7 @@ title: Egal Day One Architecture
         
         CASE {
             string readableId
+            string title
             string[] notes
             case_history_item[] caseHistory
         }

@@ -29,6 +29,7 @@ datasource db {
 
 model Case {
   id       String @id @default(cuid())
+  title    String
   notes    String
   clent    Client @relation(fields: [clientId], references: [id])
   clientId String
