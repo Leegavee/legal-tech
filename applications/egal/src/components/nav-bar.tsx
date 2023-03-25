@@ -17,6 +17,7 @@ export default function NavBar() {
 
   const navigation = [
     { name: 'Home', href: '/', current: router.pathname === '/' },
+    { name: 'Cases', href: '/cases', current: router.pathname === '/cases' },
     { name: 'Demo', href: '/demo', current: router.pathname === '/demo' },
   ];
 

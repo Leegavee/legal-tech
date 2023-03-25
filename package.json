@@ -15,11 +15,16 @@
   },
   "homepage": "https://github.com/Leegavee/legal-tech#readme",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "services/*",
-    "applications/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "services/*",
+      "applications/*"
+    ],
+    "nohoist": [
+      "**/react"
+    ]
+  },
   "devDependencies": {
     "prettier": "^2.8.3"
   },
