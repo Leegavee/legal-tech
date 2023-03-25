@@ -37,3 +37,4 @@ next-env.d.ts
 /cypress/videos/
 
 *.lock.json
+/src/graphql/client/graphql.schema.json

@@ -1,0 +1,3 @@
+server/server-gql-types.ts
+client/client-gql-types.ts
+client/graphql.schema.json

@@ -1,10 +1,12 @@
 import Cors from 'micro-cors';
-import { ApolloServer, gql } from 'apollo-server-micro';
-import { NextApiRequest, NextApiResponse } from 'next';
-import resolvers from '../../graphql/resolvers';
-import typeDefs from '../../graphql/type-defs';
+import { ApolloServer } from 'apollo-server-micro';
+import resolvers from '../../graphql/server/resolvers';
+import typeDefs from '@legavee/graphql/schema/schema';
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
 export const config = {
   api: {
