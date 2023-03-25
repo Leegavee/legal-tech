@@ -1,28 +1,17 @@
-// import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import NavBar from '@legavee/components/nav-bar';
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { Client } from '@legavee/graphql/resolvers';
 import { ApolloProvider, useQuery, useMutation } from '@apollo/client';
 import {
   UPDATE_CLIENT_MUTATION,
   CREATE_CLIENT_MUTATION,
-} from '../libs/domain/client/mutations';
-import { GET_CLIENT_QUERY } from '../libs/domain/client/queries';
+} from '../graphql/client/documents/mutations';
 import { apolloClient } from '../libs/clients/apollo-client';
-
-type AccountSettingsForm = {
-  title: { value: string };
-  first_name: { value: string };
-  last_name: { value: string };
-  email: { value: string };
-  phone_number: { value: string };
-  street_address: { value: string };
-  city: { value: string };
-  county: { value: string };
-  post_code: { value: string };
-};
+import {
+  useGetClientQuery,
+  Client,
+} from '@legavee/graphql/client/client-gql-types';
 
 function AccountSettingsLoader() {
   const { user, isLoading } = useUser();
@@ -45,47 +34,23 @@ function AuthenticatedAccountSettingsForm(user: any) {
     CREATE_CLIENT_MUTATION,
   );
   const [client, setClient] = useState<Client | null>(null);
-  const {
-    loading: loadingClientData,
-    error,
-    data,
-  } = useQuery(GET_CLIENT_QUERY, {
+  const { data, loading: loadingClient } = useGetClientQuery({
     variables: {
       auth0_id,
-    },
-    skip: !auth0_id,
-    onCompleted: (data) => {
-      setClient(data.client);
-      if (!client) {
-        // set default form values when there is no initial client data
-        setClientFormValues({
-          title: '',
-          first_name: user.user.given_name,
-          last_name: user.user.family_name,
-          auth0_id,
-          email: user.user.email,
-          phone_number: '',
-          street_address: '',
-          city: '',
-          county: '',
-          post_code: '',
-        });
-      } else {
-        setClientFormValues(data.client);
-      }
     },
   });
 
   useEffect(() => {
+    // TODO: fix the casting problems below
     if (data && data.client) {
-      setClient(data.client);
+      // @ts-ignore
       setClientFormValues(data.client);
+      // @ts-ignore
+      setClient(data.client);
+    } else {
+      setClientFormValues(null);
     }
   }, [data]);
-
-  if (error) {
-    return <p>Error loading client data</p>;
-  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -117,7 +82,7 @@ function AuthenticatedAccountSettingsForm(user: any) {
       onSubmit={handleSubmit}
     >
       <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-        {(loadingClientData || updateClientSaving || createClientSaving) && (
+        {(loadingClient || updateClientSaving || createClientSaving) && (
           <div className="absolute top-0 left-0 w-full h-full bg-gray-400 bg-opacity-50 flex items-center justify-center">
             <div className="w-6 h-6 border-4 border-gray-100 rounded-full spin"></div>
           </div>
