@@ -33,7 +33,21 @@ model Case {
   notes    String
   clent    Client @relation(fields: [clientId], references: [id])
   clientId String
-  // case_history  CaseHistorySession[]
+  dateCreated  DateTime  @default(now())
+  dateUpdated  DateTime  @updatedAt
+  case_history  CaseEvents[]
+}
+
+model CaseEvents {
+  id       String @id @default(cuid())
+  caseId   String
+  case      Case   @relation(fields: [caseId], references: [id])
+  type     String
+  summary  String
+  detail  String
+  status  String
+  dateCreated  DateTime  @default(now())
+  dateUpdated  DateTime  @updatedAt
 }
 
 model Client {
@@ -49,4 +63,6 @@ model Client {
   county          String
   post_code       String
   Case            Case[]
+  dateCreated  DateTime  @default(now())
+  dateUpdated  DateTime  @updatedAt
 }
