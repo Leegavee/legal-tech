@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-micro';
 const typeDefs = gql`
   type Query {
     client(auth0_id: String!): Client
-    casesForClient(clientId: String!): [Case!]!
+    case(clientId: String!): [Case!]!
   }
 
   type Mutation {

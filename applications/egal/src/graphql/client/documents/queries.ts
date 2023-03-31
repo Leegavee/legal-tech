@@ -16,3 +16,14 @@ export const GET_CLIENT_QUERY = gql`
     }
   }
 `;
+
+export const GET_CASES_FOR_CLIENT_QUERY = gql`
+  query getCasesForClient($clientId: String!) {
+    case(clientId: $clientId) {
+      id
+      title
+      notes
+      clientId
+    }
+  }
+`;

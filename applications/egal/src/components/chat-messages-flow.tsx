@@ -16,7 +16,7 @@ function ChatMessagesFlow({ messages, isLoading }: Props) {
   const userAvatarPhoto = useUser().user?.picture;
 
   return (
-    <div className="flex-grow bg-gray-200 overflow-y-scroll px-4 py-8">
+    <div className="flex-grow overflow-y-scroll px-4 py-8">
       <div className="flex flex-col space-y-2">
         {messages
           .filter((msg) => msg.role !== 'system')
@@ -42,7 +42,7 @@ function ChatMessagesFlow({ messages, isLoading }: Props) {
                 className={`flex-1 text-gray-900 rounded-lg p-4 ${
                   message.role === 'user'
                     ? 'ml-2 bg-blue-500 text-white'
-                    : 'mr-2 bg-white text-gray-800'
+                    : 'mr-2 bg-indigo-100 text-gray-800'
                 }`}
               >
                 <div

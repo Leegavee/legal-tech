@@ -7,9 +7,11 @@ export type LayoutProps = {
 };
 export const DefaultLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen min-w-full">
       <NavBar />
-      <div className="flex-grow bg-white">{children}</div>
+      <div className="flex-grow bg-white">
+        <div className="container mx-auto sm:px-6 lg:px-8">{children}</div>
+      </div>
     </div>
   );
 };

@@ -10,6 +10,8 @@ import {
 import { Client, Scalars } from '@legavee/graphql/client/client-gql-types';
 
 import useLoggedInClient from '@legavee/libs/hooks/useLoggedInClient';
+import LoadingSpinner from '@legavee/components/loading-spinner';
+import { DefaultLayout } from '@legavee/layouts/default-layout';
 
 // TODO: figure out what is happening with the user object!
 function AuthenticatedAccountSettingsForm() {
@@ -67,9 +69,7 @@ function AuthenticatedAccountSettingsForm() {
     >
       <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
         {(loadingClient || updateClientSaving || createClientSaving) && (
-          <div className="absolute top-0 left-0 w-full h-full bg-gray-400 bg-opacity-50 flex items-center justify-center">
-            <div className="w-6 h-6 border-4 border-gray-100 rounded-full spin"></div>
-          </div>
+          <LoadingSpinner />
         )}
         <div className="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
           <div>
@@ -386,12 +386,9 @@ function AuthenticatedAccountSettingsForm() {
 
 export default function AccountSettings() {
   return (
-    <div className="flex flex-col bg-white">
-      <NavBar />
-      <div className="flex-grow p-10">
-        <AuthenticatedAccountSettingsForm />
-      </div>
-    </div>
+    <DefaultLayout>
+      <AuthenticatedAccountSettingsForm />
+    </DefaultLayout>
   );
 }
 

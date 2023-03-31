@@ -48,7 +48,7 @@ function ChatWindow() {
             <ChatMessagesFlow messages={messages} isLoading={isLoading} />
             <div ref={messagesEndRef} />
           </div>
-          <div className="fixed w-full bottom-1">
+          <div className="fixed w-8/12 bottom-1">
             <MultilineChatInput onSubmit={handleInputSubmit} />
           </div>
         </div>
