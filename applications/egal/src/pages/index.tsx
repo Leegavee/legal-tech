@@ -5,6 +5,8 @@ import DashboardHeader from '@legavee/components/dashboard-header';
 import useLoggedInClient from '@legavee/libs/hooks/useLoggedInClient';
 import LoadingSpinner from '@legavee/components/loading-spinner';
 import Link from 'next/link';
+import ProgressBar from '@legavee/components/progress-bar';
+import { mockEvents } from '@legavee/data/conveyancing-events';
 
 export function Summary() {
   return (
@@ -70,7 +72,7 @@ export function Summary() {
         {/*</figure>*/}
         <div className="mt-16 max-w-6xl">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            Everything you need to get up and running
+            What you need to do next
           </h2>
           <p className="mt-8 mb-4">
             <strong>Action required:</strong> Please{' '}
@@ -111,6 +113,7 @@ export default function Home() {
       {loading && <LoadingSpinner />}
       <div className="p-8">
         <DashboardHeader />
+        <ProgressBar events={mockEvents} totalProgress={14} />
         <Summary />
       </div>
     </DefaultLayout>

@@ -22,6 +22,11 @@ export default function NavBar() {
       href: '/progress',
       current: router.pathname === '/progress',
     },
+    {
+      name: 'Documents',
+      href: '/documents',
+      current: router.pathname === '/documents',
+    },
     { name: 'Chat', href: '/chat', current: router.pathname === '/chat' },
   ];
 
