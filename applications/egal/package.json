@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "pre:build": "npx prisma migrate deploy && npm run gen:server && npm run gen:client ",
     "build": "next build",
     "start": "next start",
     "build_and_start": "npm run build && npm run start",

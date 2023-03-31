@@ -5,6 +5,7 @@ import DashboardHeader from '@legavee/components/dashboard-header';
 import useLoggedInClient from '@legavee/libs/hooks/useLoggedInClient';
 import LoadingSpinner from '@legavee/components/loading-spinner';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProgressBar from '@legavee/components/progress-bar';
 import { mockEvents } from '@legavee/data/conveyancing-events';
 
@@ -32,10 +33,12 @@ export function Summary() {
             </p>
           </blockquote>
           <figcaption className="mt-6 flex gap-x-4">
-            <img
+            <Image
               className="h-6 w-6 flex-none rounded-full bg-gray-50"
               src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt=""
+              width={48}
+              height={48}
             />
             <div className="text-sm leading-6">
               <strong className="font-semibold text-gray-900">
