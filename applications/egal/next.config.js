@@ -11,7 +11,7 @@ const nextConfig = {
     },
   },
   images: {
-    domains: ['lh3.googleusercontent.com', 's.gravatar.com'],
+    domains: ['lh3.googleusercontent.com', 's.gravatar.com', 'images.unsplash.com'],
     deviceSizes: [20, 40, 60, 100],
   },
   env: {

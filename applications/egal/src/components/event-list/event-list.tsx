@@ -107,24 +107,6 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
     </div>
   );
 
-  function renderIcon(event: Event) {
-    switch (event.type) {
-      case 'Communication: in':
-        return <InboxIcon className="h-5 w-5 text-indigo-600" />;
-      case 'Communication: out':
-        return <EnvelopeOpenIcon className="h-5 w-5 text-indigo-600" />;
-      case 'Communication: internal':
-        return (
-          <ChatBubbleOvalLeftEllipsisIcon className="h-5 w-5 text-indigo-600" />
-        );
-      case 'Notification':
-        return <BellIcon className="h-5 w-5 text-indigo-600" />;
-      case 'Work completed':
-        return <CheckIcon className="h-5 w-5 text-indigo-600" />;
-      default:
-        return null;
-    }
-  }
 
   function renderDetails(event: Event) {
     switch (event.status) {
@@ -155,3 +137,22 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
 };
 
 export default EventList;
+
+export function renderIcon(event: Event) {
+    switch (event.type) {
+      case 'Communication: in':
+        return <InboxIcon className="h-5 w-5 text-indigo-600" />;
+      case 'Communication: out':
+        return <EnvelopeOpenIcon className="h-5 w-5 text-indigo-600" />;
+      case 'Communication: internal':
+        return (
+          <ChatBubbleOvalLeftEllipsisIcon className="h-5 w-5 text-indigo-600" />
+        );
+      case 'Notification':
+        return <BellIcon className="h-5 w-5 text-indigo-600" />;
+      case 'Work completed':
+        return <CheckIcon className="h-5 w-5 text-indigo-600" />;
+      default:
+        return null;
+    }
+  }
