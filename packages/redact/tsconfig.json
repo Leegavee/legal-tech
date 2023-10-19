@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext"],
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+//    "typeRoots": ["./node_modules/@types", "./types"]
+  },
+  "include": ["src/**/*"],
+//  "exclude": [  "../../node_modules"]
+}
