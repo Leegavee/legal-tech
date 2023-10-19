@@ -1,6 +1,6 @@
 {
   "name": "documents",
-  "module": "index.ts",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",

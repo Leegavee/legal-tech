@@ -2,11 +2,10 @@
   "name": "@legavee/redact",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./dist",
     "clean:all": "rm -rf ./dist && rm -rf ./node_modules",
-    "build": "tsc",
+    "build": "tsc --project tsconfig.json",
     "test": "vitest run",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",

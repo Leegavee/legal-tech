@@ -1,7 +1,7 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import NavBar from '@legavee/components/nav-bar';
 import React, { useState } from 'react';
-import { redactPii } from '@legavee/redact';
+
 // @ts-ignore
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
