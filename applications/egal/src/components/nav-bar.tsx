@@ -5,6 +5,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { clientId } from '../stubs';
 
 // @ts-ignore
 function classNames(...classes) {
@@ -18,14 +19,9 @@ export default function NavBar() {
   const navigation = [
     { name: 'Home', href: '/', current: router.pathname === '/' },
     {
-      name: 'Add Communication',
-      href: '/add-communication',
-      current: router.pathname === '/add-communication',
-    },
-    {
-      name: 'New case',
-      href: '/client/new-case',
-      current: router.pathname === '/client/new-case',
+      name: 'My Cases',
+      href: `/clients/${clientId}/cases`,
+      current: router.pathname === `/clients/${clientId}/cases`,
     },
   ];
 

@@ -39,6 +39,7 @@
     "framer-motion": "^10.0.1",
     "graphql": "^16.6.0",
     "http-error": "^0.0.6",
+    "lowdb": "^6.1.1",
     "marked": "^4.2.12",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
