@@ -5,6 +5,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { clientId } from '../stubs';
 
 // @ts-ignore
 function classNames(...classes) {
@@ -17,7 +18,11 @@ export default function NavBar() {
 
   const navigation = [
     { name: 'Home', href: '/', current: router.pathname === '/' },
-    { name: 'Demo', href: '/demo', current: router.pathname === '/demo' },
+    {
+      name: 'My Cases',
+      href: `/clients/${clientId}/cases`,
+      current: router.pathname === `/clients/${clientId}/cases`,
+    },
   ];
 
   if (!user) return <>NO USER</>;
@@ -27,7 +32,7 @@ export default function NavBar() {
     <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-50">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+          <div className="mx-auto  px-2 sm:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}

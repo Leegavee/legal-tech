@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
+  ChatCompletionResponseMessageRoleEnum,
   Configuration,
   CreateChatCompletionResponseChoicesInner,
   OpenAIApi,
@@ -13,7 +14,7 @@ const openAi = new OpenAIApi(openAIConfig);
 
 interface ChatResponse {
   messages: {
-    role: 'user' | 'assistant' | 'system' | undefined;
+    role: ChatCompletionResponseMessageRoleEnum | undefined;
     content: string;
   }[];
 }

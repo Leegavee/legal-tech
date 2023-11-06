@@ -28,7 +28,7 @@
     "yarn": "1.22.19"
   },
   "dependencies": {
-    "turbo": "^1.7.0"
+    "turbo": "^1.10.15"
   },
   "bin": {
     "turbo": "node_modules/.bin/turbo"

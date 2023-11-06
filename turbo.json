@@ -2,11 +2,13 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": [".next/**"]
+      "outputs": [".next/**", "dist/**"],
+      "dependsOn": ["^build"]
     },
     "lint": {},
     "format": {},
     "dev": {},
+    "clean:all": {},
     "ci:test": {
       "outputs": [".next/**"]
     },
@@ -16,7 +18,7 @@
         "ci:test"
       ],
       "env": [],
-      "outputs": [".next/**"]
+      "outputs": [".next/**", "dist/**"]
     }
   }
 }

@@ -1,0 +1,105 @@
+const wordList = [
+  'anchor',
+  'blaze',
+  'chrome',
+  'delta',
+  'echo',
+  'frost',
+  'glint',
+  'haze',
+  'ivory',
+  'jade',
+  'kite',
+  'lunar',
+  'mango',
+  'noble',
+  'orbit',
+  'prism',
+  'quartz',
+  'reef',
+  'sable',
+  'tango',
+  'ultra',
+  'vivid',
+  'wisp',
+  'xeno',
+  'yarn',
+  'zephyr',
+  'azure',
+  'brisk',
+  'clove',
+  'drift',
+  'ember',
+  'flint',
+  'gloom',
+  'hollow',
+  'inlet',
+  'jumble',
+  'knoll',
+  'lotus',
+  'mirth',
+  'nudge',
+  'oasis',
+  'plume',
+  'quiver',
+  'rift',
+  'shale',
+  'twine',
+  'uplift',
+  'vortex',
+  'whirl',
+  'xylem',
+  'yonder',
+  'zenith',
+  'alpine',
+  'breeze',
+  'crisp',
+  'dune',
+  'expanse',
+  'fjord',
+  'grove',
+  'horizon',
+  'islet',
+  'jolt',
+  'keen',
+  'ledge',
+  'meadow',
+  'nook',
+  'outcrop',
+  'pinnacle',
+  'quill',
+  'rune',
+  'surge',
+  'tide',
+  'undulate',
+  'verve',
+  'wander',
+  'xeric',
+  'yearn',
+  'zigzag',
+  'arcane',
+  'bloom',
+  'chime',
+  'dapple',
+  'enigma',
+  'flare',
+  'gleam',
+];
+
+let currentIndex = 0;
+
+const generateUniqueID = (prefix: string) => {
+  if (currentIndex >= wordList.length - 2) {
+    // Reshuffle the word list and reset index
+    wordList.sort(() => 0.5 - Math.random());
+    currentIndex = 0;
+  }
+
+  const id = `${prefix}-${wordList[currentIndex]}-${
+    wordList[currentIndex + 1]
+  }-${wordList[currentIndex + 2]}`;
+  currentIndex += 3;
+  return id;
+};
+
+export { generateUniqueID };

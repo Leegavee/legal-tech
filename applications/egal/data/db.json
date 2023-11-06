@@ -1,0 +1,22 @@
+{
+  "clients": [
+    {
+      "id": "00000000-00000000-00000000",
+      "name": "Lewis Barclay",
+      "cases": [
+        {
+          "id": "1699273042465",
+          "background": "A new case",
+          "summary": "A new case",
+          "communications": []
+        },
+        {
+          "id": "1699273121680",
+          "background": "A second case",
+          "summary": "A second case",
+          "communications": []
+        }
+      ]
+    }
+  ]
+}
